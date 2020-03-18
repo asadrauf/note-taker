@@ -1,25 +1,28 @@
-// need fs to read and write to files
+// requiring fs that we will use to read from and write into the file
 const fs = require("fs");
 
-//  Initialize notesData
+//Exporting app 
 module.exports = function(app){
+
+// Initialize notesData Array
 let notesData = [];
 
 app.get("/api/notes", function(err, res) {
     try {
-      // reads the notes from json file
+      // Below we are reading the notes from our db.json file
       notesData = fs.readFileSync("./db/db.json", "utf8");
-      console.log("hello!");
-      // parse it so notesData is an array of objects
+      console.log("Checkout db.json file which shoulb be updated!");
+
+      // using parse so it will convert noteData array into an object
       notesData = JSON.parse(notesData);
   
-      // error handling
+      // Below code will handle the errors
     } catch (err) {
       console.log("\n error (in app.get.catch):");
       console.log(err);
     }
-    //   send objects to the browser
-    res.json(notesData);
+      // If there is not error we will send our notesData object to the browser
+      res.json(notesData);
   });
   
   // writes the new note to the json file
@@ -42,7 +45,7 @@ app.get("/api/notes", function(err, res) {
         // error handling
         if (err) throw err;
       });
-      // changeit back to an array of objects & send it back to the browser(client)
+      // If there is not error we will send our notesData object to the browser
       res.json(JSON.parse(notesData));
   
       // error Handling
@@ -52,8 +55,7 @@ app.get("/api/notes", function(err, res) {
     }
   });
   
-  // Delete a note
-  
+  // Below code will delete the noteData object
   app.delete("/api/notes/:id", function(req, res) {
     try {
       //  reads the json file
@@ -72,7 +74,7 @@ app.get("/api/notes", function(err, res) {
         if (err) throw err;
       });
   
-      // change it back to an array of objects & send it back to the browser (client)
+      // If there is not error we will send our notesData object to the browser
       res.send(JSON.parse(notesData));
   
       // error handling

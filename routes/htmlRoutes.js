@@ -2,12 +2,12 @@ const path = require("path");
 
 
 module.exports = function(app) {
-// This will return the note.html file
-app.get("/notes", function(req, res) {
+  // html route that will return us to the notes.html page
+  app.get("/notes", function(req, res) {
     res.sendFile(path.join(__dirname, "../public/notes.html"));
   });
   
-  // This will return us to the index.html page
+  // html route that will return us to the index page
   app.get("*", function(req, res) {
     res.sendFile(path.join(__dirname, "../public/index.html"));
   });
