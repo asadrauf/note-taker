@@ -68,3 +68,13 @@ html, body {
   padding: 20px;
   cursor: pointer;
 }
+
+.list-container .list-group-item:hover {
+  background-color: #eee;
+}
+
+
+.fas:hover {
+  transition: background 1.5s ease;
+  
+}
